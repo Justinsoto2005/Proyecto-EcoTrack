@@ -1,7 +1,6 @@
 package ecotrack;
-import java.io.Serializable;
 
-public class Zona implements Serializable {
+public class Zona {
     private String id;
     private String nombre;
     private double procesadoKg; // P_recolectado
