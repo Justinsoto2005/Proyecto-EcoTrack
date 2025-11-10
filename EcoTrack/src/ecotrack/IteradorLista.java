@@ -21,7 +21,7 @@ public class IteradorLista {
     }
 
     public Residuo previous() {
-        if (!hasNext()) {
+        if (hasNext() == false) {
             return null;
         }
         Residuo dato = actual.dato;
@@ -30,7 +30,7 @@ public class IteradorLista {
     }
 
     public Residuo getData() {
-        if (!hasNext()) {
+        if (hasNext() == false) {
             return null;
         }
         return actual.dato;
