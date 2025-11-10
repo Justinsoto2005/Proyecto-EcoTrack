@@ -1,7 +1,7 @@
 package ecotrack;
 
 public class ListaCircularDoble {
-    private class Nodo {
+    public class Nodo {
         public Residuo dato;
         public Nodo siguiente;
         public Nodo anterior;
