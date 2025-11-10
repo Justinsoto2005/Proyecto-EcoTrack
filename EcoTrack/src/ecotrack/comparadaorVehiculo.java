@@ -1,14 +1,13 @@
 package ecotrack;
+
 import java.util.Comparator;
 
+public class ComparadorVehiculoPorPrioridad implements Comparator<Vehiculo> {
 
-public class ComparadorVehiculo implements Comparator<Vehiculo> {
     @Override
-    public int compare(Vehiculo a, Vehiculo b) {
-        return Integer.compare(a.getPrioridad(), b.getPrioridad());
-    }
-    @Override
-    public int compare(Vehiculo a, Vehiculo b) {
-        return Double.compare(a.getCapacidadKg(), b.getCapacidadKg());
+    public int compare(Vehiculo v1, Vehiculo v2) {
+        // Mayor prioridad primero
+        return Double.compare(v2.getPrioridadCalculada(), v1.getPrioridadCalculada());
     }
 }
+
