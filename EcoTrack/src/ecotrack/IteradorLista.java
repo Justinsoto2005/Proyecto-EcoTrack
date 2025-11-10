@@ -1,9 +1,9 @@
 package ecotrack;
 
 public class IteradorLista {
-    private ListaCircularDoble.Nodo actual;
+    private Nodo actual;
 
-    IteradorLista(ListaCircularDoble.Nodo head) {
+    public IteradorLista(Nodo head) {
         this.actual = head;
     }
 

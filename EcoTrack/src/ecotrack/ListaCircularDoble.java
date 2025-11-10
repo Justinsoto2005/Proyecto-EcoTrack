@@ -1,18 +1,6 @@
 package ecotrack;
 
 public class ListaCircularDoble {
-    public class Nodo {
-        public Residuo dato;
-        public Nodo siguiente;
-        public Nodo anterior;
-
-        public Nodo(Residuo dato) {
-            this.dato = dato;
-            this.siguiente = this; 
-            this.anterior = this;
-        }
-    }
-
     private Nodo head;
     private int size; 
 
@@ -56,5 +44,9 @@ public class ListaCircularDoble {
 
     public Nodo getHeadNode() {
         return this.head;
+    }
+
+    public IteradorLista iterador() {
+        return new IteradorLista(this.head);
     }
 }
