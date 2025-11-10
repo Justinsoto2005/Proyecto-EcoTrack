@@ -8,7 +8,6 @@ public class ListaCircularDoble {
 
         public Nodo(Residuo dato) {
             this.dato = dato;
-            // Por defecto, un nodo nuevo apunta a sí mismo en una lista circular
             this.siguiente = this; 
             this.anterior = this;
         }
