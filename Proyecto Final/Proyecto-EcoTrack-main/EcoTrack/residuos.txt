@@ -1,0 +1,5 @@
+R001,Botella de Plastico,Plastico,0.5,2025-11-10,Zona Norte,3
+R002,Restos de Comida,Organico,1.2,2025-11-10,Zona Sur,5
+R003,Lata de Atun,Metal,0.2,2025-11-09,Zona Centro,2
+R004,Papel de Oficina,Papel,2.5,2025-11-08,Zona Norte,1
+R005,Vidrio Roto,Vidrio,0.8,2025-11-10,Zona Sur,4
