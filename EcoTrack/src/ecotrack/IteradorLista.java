@@ -19,18 +19,17 @@ public class IteradorLista {
         actual = actual.siguiente;
         return dato;
     }
-
+    
     public Residuo previous() {
-        if (hasNext() == false) {
+        if (!hasNext()) {
             return null;
         }
-        Residuo dato = actual.dato;
         actual = actual.anterior;
-        return dato;
+        return actual.dato;
     }
 
-    public Residuo getData() {
-        if (hasNext() == false) {
+    public Residuo currentData() {
+        if (!hasNext()) {
             return null;
         }
         return actual.dato;
