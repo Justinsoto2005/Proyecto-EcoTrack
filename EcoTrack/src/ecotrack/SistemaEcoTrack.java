@@ -8,6 +8,11 @@ import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 public class SistemaEcoTrack {
 
@@ -91,5 +96,70 @@ public class SistemaEcoTrack {
 
     public Comparator<Residuo> getCompPorPrioridad() {
         return compPorPrioridad;
+    }
+
+    public void guardarSistema(String nombreArchivo) {
+        
+        try (FileWriter fw = new FileWriter(nombreArchivo);
+             PrintWriter pw = new PrintWriter(fw)) {
+
+            IteradorLista iterador = this.listaResiduos.iterador();
+            
+            if (iterador.hasNext()) {
+                int size = this.listaResiduos.getSize();
+                
+                for (int i = 0; i < size; i++) {
+                    Residuo r = iterador.next();
+                    
+                    String linea = String.join(",",
+                            r.getId(),
+                            r.getNombre(),
+                            r.getTipo(),
+                            String.valueOf(r.getPeso()),
+                            r.getFechaRecoleccion(),
+                            r.getZona(),
+                            String.valueOf(r.getPrioridadAmbiental())
+                    );
+                    
+                    pw.println(linea);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al guardar el sistema: " + e.getMessage());
+        }
+    }
+
+    public void cargarSistema(String nombreArchivo) {
+        
+        this.listaResiduos = new ListaCircularDoble(); 
+        
+        try (FileReader fr = new FileReader(nombreArchivo);
+             BufferedReader br = new BufferedReader(fr)) {
+
+            String linea;
+            
+            while ((linea = br.readLine()) != null) {
+                
+                String[] datos = linea.split(",");
+                
+                if (datos.length == 7) {
+                    String id = datos[0];
+                    String nombre = datos[1];
+                    String tipo = datos[2];
+                    double peso = Double.parseDouble(datos[3]);
+                    String fecha = datos[4];
+                    String zona = datos[5];
+                    int prioridad = Integer.parseInt(datos[6]);
+                    
+                    Residuo r = new Residuo(id, nombre, tipo, peso, fecha, zona, prioridad);
+                    
+                    this.listaResiduos.addLast(r);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al cargar el sistema: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.err.println("Error en el formato de número en el archivo: " + e.getMessage());
+        }
     }
 }
