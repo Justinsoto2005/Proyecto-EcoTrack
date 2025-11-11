@@ -5,6 +5,9 @@ import java.util.PriorityQueue;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class SistemaEcoTrack {
 
@@ -56,5 +59,37 @@ public class SistemaEcoTrack {
         double peso = r.getPeso();
         double pesoActual = this.estadisticasPorTipo.getOrDefault(tipo, 0.0);
         this.estadisticasPorTipo.put(tipo, pesoActual + peso);
+    }
+
+    public List<Residuo> getResiduosOrdenados(Comparator<Residuo> comparador) {
+        
+        List<Residuo> listaTemporal = new ArrayList<>();
+        
+        IteradorLista iterador = this.listaResiduos.iterador();
+        
+        if (iterador.hasNext()) {
+            int size = this.listaResiduos.getSize();
+            for (int i = 0; i < size; i++) {
+                listaTemporal.add(iterador.next());
+            }
+        }
+        
+        if (comparador != null) {
+            Collections.sort(listaTemporal, comparador);
+        }
+        
+        return listaTemporal;
+    }
+
+    public Comparator<Residuo> getCompPorPeso() {
+        return compPorPeso;
+    }
+
+    public Comparator<Residuo> getCompPorTipo() {
+        return compPorTipo;
+    }
+
+    public Comparator<Residuo> getCompPorPrioridad() {
+        return compPorPrioridad;
     }
 }
